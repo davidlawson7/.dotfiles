@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTFILES_DIR="$(pwd)"
+CONFIG_DIR="${HOME}/.config"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# =============================================================================
+# Helper Functions
+# =============================================================================
+
+print_header() {
+    echo -e "${BLUE}========================================${NC}"
+    echo -e "${BLUE}$1${NC}"
+    echo -e "${BLUE}========================================${NC}"
+}
+
+print_info() {
+    echo -e "${BLUE}ℹ ${NC} $1"
+}
+
+print_success() {
+    echo -e "${GREEN}✓${NC} $1"
+}
+
+# =============================================================================
+# Install Configuration Files
+# =============================================================================
+
+print_header "Installing / Updating config files"
+
+for dir in "$DOTFILES_DIR/config"/*; do
+    if [ -d "$dir" ]; then
+        dir_name=$(basename "$dir")
+
+        for file in "${dir}"/*; do
+            if [ -f "$file" ]; then
+                
+                file_name=$(basename "$file")
+
+                if [ -f "${CONFIG_DIR}/${dir_name}/${file_name}" ]; then
+                    print_info "Updating ${dir_name}/${file_name}"
+                    # Update existing file if it exists. Could backup ???
+                    cat "${file}" > "${CONFIG_DIR}/${dir_name}/${file_name}"
+                else
+                    print_info "Creating ${dir_name}/${file_name}"
+                    # Create new file if none exist
+                    cp "${file}" "${CONFIG_DIR}/${dir_name}/${file_name}"
+                fi
+            fi
+        done
+    fi
+done
+
+#print_header "Install Ghostty"
+
+#if [ -f "${CONFIG_DIR}/ghostty/config" ]; then
+#    rm "${CONFIG_DIR}/ghostty/config"
+#fi
+
+#cp "${DOTFILES_DIR}/ghostty/config" "${CONFIG_DIR}/ghostty/config"
+
+
+#if [ -f "${CONFIG_DIR}/hypr/hyprland.conf" ]; then
+#    cat "${DOTFILES_DIR}/hypr/hyprland.conf" > "${CONFIG_DIR}/hypr/hyprland.conf"
+#else
+#    cp "${DOTFILES_DIR}/hypr/hyprland.conf" "${CONFIG_DIR}/hypr/hyprland.conf"
+#fi
+
+print_success "Done!"

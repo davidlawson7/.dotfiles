@@ -59,6 +59,16 @@ for dir in "$DOTFILES_DIR/config"/*; do
     fi
 done
 
+# Wallpapers
+#killall hyprpaper
+#sleep 1
+#hyprpaper & > /dev/null
+
+# Main bar
+killall waybar
+sleep 1
+waybar & > /dev/null
+
 #print_header "Install Ghostty"
 
 #if [ -f "${CONFIG_DIR}/ghostty/config" ]; then

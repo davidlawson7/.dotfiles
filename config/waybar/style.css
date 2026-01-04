@@ -1,0 +1,77 @@
+@define-color background #222;
+@define-color foreground #e6d8ba;
+/*@define-color background #11221C;
+@define-color background #3a2f78;*/
+
+* {
+  background-color: @background;
+  color: @foreground;
+
+  border: none;
+  border-radius: 4px;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 16px;
+  margin: 0px;
+  opacity: 0.97;
+}
+
+.modules-left {
+  margin-left: 0px;
+}
+
+.modules-right {
+  margin-right: 0px;
+}
+
+#workspaces button {
+  all: initial;
+  padding: 0 0px;
+  margin: 0 0px;
+  min-width: 9px;
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+}
+
+#cpu,
+#battery,
+#pulseaudio,
+#custom-omarchy,
+#custom-screenrecording-indicator,
+#custom-update {
+  margin: 0 0px;
+}
+
+#tray {
+  margin-right: 0px;
+}
+
+#bluetooth {
+  margin-right: 0px;
+}
+
+#network {
+  margin-right: 0px;
+}
+
+#custom-expand-icon {
+  margin-right: 0px;
+}
+
+tooltip {
+  padding: 0px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+#clock {
+  margin-left: 5px;
+}
+
+.hidden {
+  opacity: 0;
+}
